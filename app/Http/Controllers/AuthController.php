@@ -31,14 +31,14 @@ class AuthController extends Controller
             'password' => 'required'
 
         ]);
-
+        
         $name = $request->input('name');
         $email = $request->input('email');
         $password = Crypt::encrypt($request->input('password'));
 
         User::create(['name' => $name, 'email' => $email, 'password' => $password]);
 
-        return response()->json(['status' => 'Success', 'operation' => 'created']);
+        return response()->json(['status' => 'true', 'Mensaje' => 'Usuario Creado Satisfactoriamente']);
     }
     /**
      * Get a JWT via given credentials.
@@ -56,16 +56,7 @@ class AuthController extends Controller
             }
             else return $this->respondWithToken($token);
         }
-           
-        /*$credentials = $request->only(['email', 'password']);
-        $token = auth()->attempt($credentials);
-       
-        if (! $token = auth()->attempt($credentials)) {
-            echo "Token=".$token;
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-        
-        return $this->respondWithToken($token);*/
+        else return response()->json(['status' => 'false', 'Mensaje' => 'Usuario o Contraseña invalida']);
     }
 
     /**

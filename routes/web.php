@@ -13,6 +13,8 @@
 |
 */
 //use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
